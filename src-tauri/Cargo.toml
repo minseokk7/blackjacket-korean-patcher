@@ -1,0 +1,29 @@
+[package]
+name = "blackjacket-patcher"
+version = "1.0.0"
+description = "Black Jacket 완전 한국어 패치 인스톨러"
+authors = ["Antigravity"]
+edition = "2021"
+
+[lib]
+name = "blackjacket_patcher_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-opener = "2"
+tauri-plugin-dialog = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+zip = { version = "2.2", default-features = false, features = ["deflate"] }
+winreg = "0.52"
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = 3
+panic = "abort"
+strip = true
